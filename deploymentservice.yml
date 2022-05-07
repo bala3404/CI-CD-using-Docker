@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javaapp-deployment
+  labels:
+    app: javaapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: javaapp
+  template:
+    metadata:
+      labels:
+        app: javaapp 
+    spec:
+      containers:
+      - name:javaserver
+        image: bala3404/javaapp:1.1
+        ports:
+        - containerPort: 5000
+        
+        
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: javaapp-service
+spec:
+  selector:
+    app: javaapp
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 5000
+    nodePort: 32320
