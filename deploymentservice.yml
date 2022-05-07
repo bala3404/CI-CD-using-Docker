@@ -15,7 +15,7 @@ spec:
         app: javaapp 
     spec:
       containers:
-      - name:javaserver
+      - name: javaserver
         image: bala3404/javaapp:1.1
         ports:
         - containerPort: 5000
